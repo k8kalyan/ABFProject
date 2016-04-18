@@ -5,11 +5,12 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceException;
-
+import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.sogeti.dao.ContractDao;
 import com.sogeti.db.models.Contract;
+
 
 /**
  * ContractDAOImpl class will invoke ContractDAO and calls the method
@@ -80,8 +81,16 @@ public class ContractDaoImpl implements ContractDao {
 	}
 
 	public List<Contract> allContracts() {
-		return null;
+		
+		Query query = this.em.createQuery("SELECT c FROM Contract c where c.isactive=1");
+		List<Contract> contractList = null;
+		if (query != null) {
+			contractList = query.getResultList();
+		 System.out.println("List:"+contractList);
+		}
+		return contractList;
 	}
+	
 
 	public List<Contract> allContractsByMe(int loginID) {
 		// TODO Auto-generated method stub

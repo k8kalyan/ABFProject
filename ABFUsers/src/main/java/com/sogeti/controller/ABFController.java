@@ -1,10 +1,12 @@
 package com.sogeti.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.PersistenceException;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sogeti.constants.ABFConstants;
 import com.sogeti.model.ABFResponse;
 import com.sogeti.model.Contract;
+import com.sogeti.db.models.*;
 import com.sogeti.service.ContractManager;
 /**
  * ABF controller class  provides implementations for the contract. 
@@ -78,9 +81,11 @@ public class ABFController {
 	
 	@RequestMapping( value = "/all", method = RequestMethod.GET)
 	public ABFResponse getContracts(){
-		ABFResponse  response = new ABFResponse();
+		ABFResponse  response = new ABFResponse();	
 		
-		
+	 List<com.sogeti.db.models.Contract> contracts = new ArrayList<com.sogeti.db.models.Contract>();
+	  contracts = contractManager.allContracts();
+	  System.out.println("Contracts Loaded:"+contracts);
 		
 		return response;
 	}
