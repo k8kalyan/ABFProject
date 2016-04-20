@@ -78,24 +78,24 @@ public class ContractManagerImpl implements ContractManager {
 		return contractdao.allContracts();
 	}
 	
-	public Contract getContract(int contractID) {
-		// TODO Auto-generated method stub
-		return null;
+	public Contract getContract(int contractId) {
+		
+	return contractdao.getContract(contractId);
 	}
 	
 	public void updateContract(Contract contract) {
-		// TODO Auto-generated method stub
+		contractdao.updateContract(contract);
 		
 	}
 	
-	public void deleteContract(Contract contract) {
-		// TODO Auto-generated method stub
+	public void deleteContract(Contract contractData) {
+		contractdao.deleteContract(contractData);
 		
 	}
 
-	public List<Contract> allContractsByMe(int loginID) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Contract> allContractsByMe(int loginId) {
+		return contractdao.allContractsByMe(loginId);	
+		
 	}
 
 	public List<Contract> allContractsApprovalByMe(int loginID) {

@@ -41,13 +41,13 @@ public interface ContractManager {
 
 	public List<Contract> allContracts();
 
-	public List<Contract> allContractsByMe(int loginID);
+	public List<Contract> allContractsByMe(int loginId);
 	public List<Contract> allContractsApprovalByMe(int loginID);
 	
 	public Contract getContract(int contractID);
 
 	public void updateContract(Contract contract);
 
-	public void deleteContract(Contract contract);
+	public void deleteContract(Contract contractData);
 
 }

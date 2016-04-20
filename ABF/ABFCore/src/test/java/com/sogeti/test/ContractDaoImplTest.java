@@ -66,7 +66,7 @@ public class ContractDaoImplTest extends TestCase {
 		try
 		{
 		Contract contractEntity = new Contract();
-		contractEntity.setBisCode("123");
+		//contractEntity.setBisCode("123");
 		contractEntity.setComments("Success");
 		contractEntity.setCompanyName("ABC");
 		contractEntity.setCustomerName("Test");

@@ -47,5 +47,5 @@ public interface ContractDao {
 
 	public void updateContract(Contract contract);
 
-	public void deleteContract(Contract contract);
+	public void deleteContract(Contract contractData);
 }

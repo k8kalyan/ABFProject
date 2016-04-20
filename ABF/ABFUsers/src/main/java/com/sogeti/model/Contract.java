@@ -13,11 +13,74 @@ public class Contract {
 
 	private int contractId;
     private String contractName;
-	private String customerName;	
+	private String customerName;
+	private String companyName;
 	private String comments;
-	private Date toDate;
-    private Date fromDate;
-    private Status status;
+	private String contractCreatedBy;
+	private Date contractStartDate;
+	private Date contractEndDate;
+	private int loginId;
+    /**
+	 * @return the companyName
+	 */
+	public String getCompanyName() {
+		return companyName;
+	}
+	/**
+	 * @param companyName the companyName to set
+	 */
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+	/**
+	 * @return the contractCreatedBy
+	 */
+	public String getContractCreatedBy() {
+		return contractCreatedBy;
+	}
+	/**
+	 * @param contractCreatedBy the contractCreatedBy to set
+	 */
+	public void setContractCreatedBy(String contractCreatedBy) {
+		this.contractCreatedBy = contractCreatedBy;
+	}
+	/**
+	 * @return the contractStartDate
+	 */
+	public Date getContractStartDate() {
+		return contractStartDate;
+	}
+	/**
+	 * @param contractStartDate the contractStartDate to set
+	 */
+	public void setContractStartDate(Date contractStartDate) {
+		this.contractStartDate = contractStartDate;
+	}
+	/**
+	 * @return the contractEndDate
+	 */
+	public Date getContractEndDate() {
+		return contractEndDate;
+	}
+	/**
+	 * @param contractEndDate the contractEndDate to set
+	 */
+	public void setContractEndDate(Date contractEndDate) {
+		this.contractEndDate = contractEndDate;
+	}
+	/**
+	 * @return the loginId
+	 */
+	public int getLoginId() {
+		return loginId;
+	}
+	/**
+	 * @param loginId the loginId to set
+	 */
+	public void setLoginId(int loginId) {
+		this.loginId = loginId;
+	}
+	private Status status;
 	/**
 	 * @return the contractId
 	 */
@@ -66,30 +129,7 @@ public class Contract {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	/**
-	 * @return the toDate
-	 */
-	public Date getToDate() {
-		return toDate;
-	}
-	/**
-	 * @param toDate the toDate to set
-	 */
-	public void setToDate(Date toDate) {
-		this.toDate = toDate;
-	}
-	/**
-	 * @return the fromDate
-	 */
-	public Date getFromDate() {
-		return fromDate;
-	}
-	/**
-	 * @param fromDate the fromDate to set
-	 */
-	public void setFromDate(Date fromDate) {
-		this.fromDate = fromDate;
-	}
+	
 	/**
 	 * @return the status
 	 */
@@ -114,12 +154,18 @@ public class Contract {
 		builder.append(contractName);
 		builder.append(", customerName=");
 		builder.append(customerName);
+		builder.append(", companyName=");
+		builder.append(companyName);
 		builder.append(", comments=");
 		builder.append(comments);
-		builder.append(", toDate=");
-		builder.append(toDate);
-		builder.append(", fromDate=");
-		builder.append(fromDate);
+		builder.append(", contractCreatedBy=");
+		builder.append(contractCreatedBy);
+		builder.append(", contractStartDate=");
+		builder.append(contractStartDate);
+		builder.append(", contractEndDate=");
+		builder.append(contractEndDate);
+		builder.append(", loginId=");
+		builder.append(loginId);
 		builder.append(", status=");
 		builder.append(status);
 		builder.append("]");

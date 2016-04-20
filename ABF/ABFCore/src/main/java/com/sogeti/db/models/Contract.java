@@ -1,7 +1,12 @@
 package com.sogeti.db.models;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.Date;
 import java.util.List;
 
@@ -10,9 +15,11 @@ import java.util.List;
  * The persistent class for the contract database table.
  * 
  */
+
 @Entity
 @Table(name="contract")
 @NamedQuery(name="Contract.findAll", query="SELECT c FROM Contract c")
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Contract implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,9 +27,6 @@ public class Contract implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="contract_id", unique=true, nullable=false)
 	private int contractId;
-
-	@Column(name="bis_code", length=255)
-	private String bisCode;
 
 	@Column(length=256)
 	private String comments;
@@ -48,41 +52,40 @@ public class Contract implements Serializable {
 	private int loginId;
 
 	//bi-directional many-to-one association to AmContract
+	@JsonIgnore
 	@OneToMany(mappedBy="contract")
 	private List<AmContract> amContracts;
 
 	//bi-directional one-to-one association to ApproverFlow
+	@JsonIgnore
 	@OneToOne(mappedBy="contract", fetch=FetchType.LAZY)
 	private ApproverFlow approverFlow;
 
 	//bi-directional many-to-one association to Status
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="status_id")
+	@JsonIgnore
 	private Status status;
 
 	//bi-directional one-to-one association to Fixed
+	@JsonIgnore
 	@OneToOne(mappedBy="contract", fetch=FetchType.LAZY)
 	private Fixed fixed;
 
 	//bi-directional many-to-one association to KtContract
+	@JsonIgnore
 	@OneToMany(mappedBy="contract")
 	private List<KtContract> ktContracts;
 
 	//bi-directional many-to-one association to RiskComment
+	@JsonIgnore
 	@OneToMany(mappedBy="contract")
 	private List<RiskComment> riskComments;
 
 	public Contract() {
 	}
 
-	public String getBisCode() {
-		return this.bisCode;
-	}
-
-	public void setBisCode(String bisCode) {
-		this.bisCode = bisCode;
-	}
-
+	
 	public String getComments() {
 		return this.comments;
 	}
@@ -236,5 +239,45 @@ public class Contract implements Serializable {
 
 		return riskComment;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Contract [contractId=");
+		builder.append(contractId);
+		
+		builder.append(", comments=");
+		builder.append(comments);
+		builder.append(", companyName=");
+		builder.append(companyName);
+		builder.append(", contractCreatedBy=");
+		builder.append(contractCreatedBy);
+		builder.append(", contractEndDate=");
+		builder.append(contractEndDate);
+		builder.append(", contractStartDate=");
+		builder.append(contractStartDate);
+		builder.append(", customerName=");
+		builder.append(customerName);
+		builder.append(", loginId=");
+		builder.append(loginId);
+		builder.append(", amContracts=");
+		builder.append(amContracts);
+		builder.append(", approverFlow=");
+		builder.append(approverFlow);
+		builder.append(", status=");
+		builder.append(status);
+		builder.append(", fixed=");
+		builder.append(fixed);
+		builder.append(", ktContracts=");
+		builder.append(ktContracts);
+		builder.append(", riskComments=");
+		builder.append(riskComments);
+		builder.append("]");
+		return builder.toString();
+	}
+	
 
 }

@@ -16,6 +16,7 @@
 	<context:component-scan base-package="com.sogeti.serviceImpl" />
 	<context:component-scan base-package="com.sogeti.repository" />
 	<context:component-scan base-package="com.sogeti.controller" />
+	<context:component-scan base-package="com.sogeti.db.models" />
 	
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 	
@@ -28,6 +29,7 @@
         <property name="packagesToScan">
             <list>
 	                <value>com.sogeti.model</value> 
+	                <value>com.sogeti.db.models</value> 
 	    			 
             </list>
         </property>
